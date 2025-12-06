@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial scale=1.0"/>
+        <title> Join Learnlink</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div class="Container">
+            <div class="header">
+                <h1>Learnlink</h1>
+                <p class="tagline">Connecting you to knowledge, one lesson at a time.</p>
+
+            </div>
+            <form id="registrform">
+                <h2> Create your account</h2>
+                <div class="input-group">
+                    <label>Full Name </label>
+                    <input type="text" id="name" placeholder="e.g., Anyi Faith"/>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="Email" id="Email" placeholder="example@gmail.com"/>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Create a Strong Password">
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmpassword" placeholder="Repeat your password">
+                </div>
+                <button type="submit" class="btn">Sign up</button>
+                <p class="success" id="successMessage"></p>
+                <p class="error" id="errorMessage"></p>
+                <p class="footer text">
+                    Already have an account?<a href="#">Login</a>
+                </p>
+            </form>
+        </div>
+        <script src="Script.js"></script>
+    </body>
+</html>
