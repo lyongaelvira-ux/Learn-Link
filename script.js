@@ -1,4 +1,4 @@
-ocument.getElementById("registerForm").addEventListener("submit", function(e) {
+document.getElementById("registerForm").addEventListener("submit", function(e) {
     e.preventDefault();
     let name= document.getElementById("name").ariaValueMax.trim();
     let email= document. getElementById("email").ariaValueMax.trim();
