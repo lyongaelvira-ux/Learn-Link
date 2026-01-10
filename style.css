@@ -1,101 +1,89 @@
-*{
-    margin:0;
-    padding:0;
+* {
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
-body{
-    height: 100vh;
-    background:linear gradients(135deg,#3b82f6,#9333ea);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+
+body {
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
-.container{
-    width: 400px;
-    background: #ffffffdd;
-    backdrop-filter: blur(10px);
+
+.card {
+    background: #fff;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    animation: fadeln 1s ease-in-out;
-}
-/* Fade Animation */
-@keyframes fadeln{
-    from { opacity:0;transform:translateY(30px);}
-    to{ opacity: 1;transform:translateY(0);}
-}
-.header h1{
-    text-align:center;
-    color:#1f2937;
-    font-size:32px;
-    font-weight:700;
-}
-.tagline{
-    text-align: center;
-    font-size: 14px;
-    color: #4b5563;
-    margin-bottom: 20px;
-}
-h2{
-    text-align: center;
-    margin-bottom: 20px;
-    color:#111827;
-}
-.input-group{
-    margin-bottom:15px;
-}
-label{
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: block;
-    color: #111827;
-}
-input{
-    width: 100;
-    padding: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-input:focus{
-    border-color:#6366f1;
-    box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
-    outline: none;
-}
-.btn{
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 100%;
-    padding:13px;
-    background:#3b82f6;
-    border: none;
-    color: #fff;
-    cursor: pointer;
+    max-width: 450px;
+    text-align: center;
+
+    position: relative;
+}
+
+/* Login at the top right */
+.top-login {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+/* Screen 1: Portals */
+.student-link { background-color: #4caf50; color: white; }
+.lecturer-link { background-color: #2196f3; color: white; }
+.admin-link { background-color: #f44336; color: white; }
+
+.portal-btn {
+    display: block;
+    padding: 12px;
+    margin: 10px 0 25px 0;
+
+    text-decoration: none;
     border-radius: 8px;
-    font-size: 16px;
-    margin-top: 10px;
-    transition: 0.3s;
     font-weight: bold;
 }
-.btn:hover{
-    background: #2563eb;
+
+/* Screen 2: Inputs under field names */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
 }
-.success{
-    color: green;
-    text-align: center;
-    margin-top: 10px;
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
 }
-.error{
-    color: red;
-    text-align: center;
-    margin-top: 10px;
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
 }
-.footer-text{
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
+
+
+.signup-btn {
+    width: 100%;
+    padding: 14px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
 }
-.footer-text a{
-    color: #2563eb;
-    text-decoration: none;
-}
+
+h1 { color: #0d47a1; margin-bottom: 10px; }
+p { color: #666; font-size: 14px; margin-bottom: 20px; }

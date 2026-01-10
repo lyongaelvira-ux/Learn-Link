@@ -24,6 +24,10 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     }
     success.textContent='Welcome to LearnLink, ${name}!' ;
 
+        document.getElementById('loginForm').addEventListener('submit',(e)=>{
+            e.preventDefault();
+            
+        }
 
 
 });
