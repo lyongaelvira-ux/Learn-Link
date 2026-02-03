@@ -1,58 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width,initial scale=1.0"/>
-        <title> Join Learnlink</title>
-        <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body>
-
-        <header style="padding:18px 24px;background:transparent">
-        <nav class="top-bar" role="navigation" aria-label="Main navigation">
-            <div class="top-brand">LEARN-LINK</div>
-            <div class="top-nav">
-                <a href="home.html">Home</a>
-                <a href="login.html">Login</a>
-                <a href="services.html" class="active">Services</a>
-                <a href="about.html">About</a>
-               
-            </div>
-        </nav>
-    </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Learn-Link</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #2563eb, #0ea5e9);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .simple-form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        .simple-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .simple-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .message {
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+            display: none;
+        }
+        .success { background: #d1fae5; color: #065f46; }
+        .error { background: #fee2e2; color: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="simple-form">
+        <h2 style="text-align: center;">Create Account</h2>
+        
+        <div id="message" class="message"></div>
+        
+        <input type="text" class="simple-input" id="name" placeholder="Full Name" required>
+        <input type="email" class="simple-input" id="email" placeholder="Email Address" required>
+        <input type="password" class="simple-input" id="password" placeholder="Password (min 6 chars)" required minlength="6">
+        
+        <select class="simple-input" id="role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="admin">Administrator</option>
+        </select>
+        
+        <button class="simple-btn" onclick="register()">Create Account</button>
+        
+        <p style="text-align: center; margin-top: 20px;">
+            Already have an account? <a href="login.html">Login here</a>
+        </p>
+    </div>
     
-        <div class="Container">
-            <div class="header">
-                <h1>Learnlink</h1>
-                <p class="tagline">Connecting you to knowledge, one lesson at a time.</p>
-
-            </div>
-            <form id="registrform">
-                <h2> Create your account</h2>
-                <div class="input-group">
-                    <label>Full Name </label>
-                    <input type="text" id="name" placeholder="e.g., Anyi Faith"/>
-                </div>
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="Email" id="Email" placeholder="example@gmail.com"/>
-                </div>
-                <div class="input-group">
-                    <label>Password</label>
-                    <input type="password" id="password" placeholder="Create a Strong Password">
-                </div>
-                <div class="input-group">
-                    <label>Confirm Password</label>
-                    <input type="password" id="confirmpassword" placeholder="Repeat your password">
-                </div>
-                <button type="submit" class="btn">Sign up</button>
-                <p class="success" id="successMessage"></p>
-                <p class="error" id="errorMessage"></p>
-                <p class="footer text">
-                    Already have an account?<a href="#">Login</a>
-                </p>
-            </form>
-        </div>
-        <script src="Script.js"></script>
-    </body>
+    <script src="js/auth.js"></script>
+    <script>
+        function register() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            
+            const result = SimpleAuth.register(email, password, name, role);
+            
+            const message = document.getElementById('message');
+            if (result.success) {
+                message.textContent = '✅ Registration successful! Redirecting...';
+                message.className = 'message success';
+                message.style.display = 'block';
+                
+                // Auto login and redirect
+                localStorage.setItem('current_user', JSON.stringify(result.user));
+                setTimeout(() => window.location.href = 'dashboard.html', 1500);
+            } else {
+                message.textContent = '❌ ' + result.error;
+                message.className = 'message error';
+                message.style.display = 'block';
+            }
+        }
+    </script>
+</body>
 </html>

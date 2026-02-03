@@ -1,52 +1,459 @@
+<!-- services.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Learn-Link Solutions</title>
     <link rel="stylesheet" href="style.css">
-    <title>services</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <header style="padding:18px 24px;background:transparent">
-        <nav class="top-bar" role="navigation" aria-label="Main navigation">
-            <div class="top-brand">LEARN-LINK</div>
-            <div class="top-nav">
-                <a href="home.html">Home</a>
-                <a href="login.html">Login</a>
-                <a href="services.html" class="active">Services</a>
-                <a href="about.html">About</a>
-               
-            </div>
-        </nav>
-    </header>
-    <div class="services-container">
-        <div class="service-grid">
-            <a href="smart scheduler.html" class="service-box">
-                <h4>SMART SCHEDULER</h4>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learn-<strong>Link</strong></span>
             </a>
 
-            <a href="feedback.html" class="service-box">
-                <h4>FEEDBACK AND GRADING</h4>
-            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
 
-            <a href="collaboration.html" class="service-box">
-                <h4>COLLABORATION</h4>
-            </a>
-
-            <a href="PROGRESS TRACKER.html" class="service-box">
-                <h4>PROGRESS TRACKER</h4>
-            </a>
-
-            <a href="CAMPUS UPDATES.html" class="service-box">
-                <h4>CAMPUS UPDATE</h4>
-            </a>
-
-            <a href="remote access.html" class="service-box">
-                <h4>REMOTE ACCESS</h4>
-            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="btn-nav">Login</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
+    <!-- Services Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive solutions designed to transform educational experiences</p>
+        </div>
+    </section>
+
+    <!-- Solutions Overview -->
+    <section class="solutions-overview">
+        <div class="container">
+            <h2 class="section-title">Complete Educational Ecosystem</h2>
+            <p class="section-subtitle">Learn-Link provides integrated solutions for every educational challenge</p>
+
+            <div class="solutions-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="students">For Students</button>
+                    <button class="tab-btn" data-tab="teachers">For Teachers</button>
+                    <button class="tab-btn" data-tab="admins">For Administrators</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="students-tab">
+                        <div class="tab-pane-content">
+                            <div class="tab-image">
+                                <img src="image/image_1.jpeg" alt="Student Services">
+                            </div>
+                            <div class="tab-text">
+                                <h3>Empowering Student Success</h3>
+                                <p>Tools designed to help students excel academically while reducing stress and
+                                    improving organization.</p>
+                                <ul>
+                                    <li><strong>Smart Assignment Tracker:</strong> Never miss deadlines with automated
+                                        reminders</li>
+                                    <li><strong>Class Catch-Up:</strong> Access lecture recordings and notes for missed
+                                        classes</li>
+                                    <li><strong>Progress Dashboard:</strong> Visualize your academic growth over time
+                                    </li>
+                                    <li><strong>Peer Collaboration:</strong> Work seamlessly with classmates on projects
+                                    </li>
+                                    <li><strong>Offline Mode:</strong> Study without internet access</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="teachers-tab">
+                        <div class="tab-pane-content">
+                            <div class="tab-image">
+                                <img src="image/image_8.jpeg" alt="Teacher Services">
+                            </div>
+                            <div class="tab-text">
+                                <h3>Enhancing Teaching Efficiency</h3>
+                                <p>Streamline classroom management and improve student engagement with our teacher
+                                    tools.</p>
+                                <ul>
+                                    <li><strong>Assignment Management:</strong> Create, distribute, and grade
+                                        assignments efficiently</li>
+                                    <li><strong>Feedback System:</strong> Provide personalized feedback to each student
+                                    </li>
+                                    <li><strong>Attendance Tracking:</strong> Monitor student presence and participation
+                                    </li>
+                                    <li><strong>Resource Library:</strong> Share materials and resources easily</li>
+                                    <li><strong>Performance Analytics:</strong> Identify students who need extra help
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="admins-tab">
+                        <div class="tab-pane-content">
+                            <div class="tab-image">
+                                <img src="image/image_9.jpeg" alt="Admin Services">
+                            </div>
+                            <div class="tab-text">
+                                <h3>Streamlining Administration</h3>
+                                <p>Data-driven insights and tools for effective institutional management.</p>
+                                <ul>
+                                    <li><strong>Institutional Analytics:</strong> Comprehensive data on academic
+                                        performance</li>
+                                    <li><strong>Communication Hub:</strong> Centralized announcements and notifications
+                                    </li>
+                                    <li><strong>Resource Allocation:</strong> Optimize resource distribution based on
+                                        needs</li>
+                                    <li><strong>Compliance Tracking:</strong> Monitor accreditation requirements</li>
+                                    <li><strong>Custom Reporting:</strong> Generate detailed reports for stakeholders
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features -->
+    <section class="core-features">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <p class="section-subtitle">Every feature designed to solve specific educational challenges</p>
+
+            <div class="features-detailed">
+                <!-- Feature 1 -->
+                <div class="feature-detail">
+                    <div class="feature-number">01</div>
+                    <div class="feature-content">
+                        <h3>Assignment & Deadline Organization</h3>
+                        <p><strong>Problem Solved:</strong> Missing assignments or deadlines due to poor tracking</p>
+                        <div class="feature-solution">
+                            <h4>Our Solution:</h4>
+                            <ul>
+                                <li>Centralized calendar with all assignments and deadlines</li>
+                                <li>Automated reminders via email, SMS, and push notifications</li>
+                                <li>Priority tagging for urgent tasks</li>
+                                <li>Integration with popular calendar apps</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-detail">
+                    <div class="feature-number">02</div>
+                    <div class="feature-content">
+                        <h3>Real-Time Communication Platform</h3>
+                        <p><strong>Problem Solved:</strong> Limited communication between students, peers and lecturers
+                        </p>
+                        <div class="feature-solution">
+                            <h4>Our Solution:</h4>
+                            <ul>
+                                <li>Instant messaging for class discussions</li>
+                                <li>Video conferencing for virtual office hours</li>
+                                <li>Group channels for project collaboration</li>
+                                <li>Announcement boards for important updates</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-detail">
+                    <div class="feature-number">03</div>
+                    <div class="feature-content">
+                        <h3>Personalized Feedback System</h3>
+                        <p><strong>Problem Solved:</strong> Delay or no feedback on assignments and projects</p>
+                        <div class="feature-solution">
+                            <h4>Our Solution:</h4>
+                            <ul>
+                                <li>Structured feedback templates for consistency</li>
+                                <li>Rubric-based grading system</li>
+                                <li>Peer review capabilities</li>
+                                <li>Audio/video feedback options</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-detail">
+                    <div class="feature-number">04</div>
+                    <div class="feature-content">
+                        <h3>Catch-Up Learning Module</h3>
+                        <p><strong>Problem Solved:</strong> Students missing classes due to health issues, location or
+                            falling behind</p>
+                        <div class="feature-solution">
+                            <h4>Our Solution:</h4>
+                            <ul>
+                                <li>Automatic lecture recording and transcription</li>
+                                <li>Organized digital notes repository</li>
+                                <li>Self-paced learning paths</li>
+                                <li>Interactive quizzes for self-assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-detail">
+                    <div class="feature-number">05</div>
+                    <div class="feature-content">
+                        <h3>Academic Progress Visualization</h3>
+                        <p><strong>Problem Solved:</strong> Lack of system to visualize academic progress over time</p>
+                        <div class="feature-solution">
+                            <h4>Our Solution:</h4>
+                            <ul>
+                                <li>Interactive dashboard with performance metrics</li>
+                                <li>Customizable charts and graphs</li>
+                                <li>Progress tracking against learning objectives</li>
+                                <li>Predictive analytics for performance trends</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-detail">
+                    <div class="feature-number">06</div>
+                    <div class="feature-content">
+                        <h3>Accessibility & Remote Support</h3>
+                        <p><strong>Problem Solved:</strong> Supporting remote learners and those with connectivity
+                            issues</p>
+                        <div class="feature-solution">
+                            <h4>Our Solution:</h4>
+                            <ul>
+                                <li>Offline mode for limited connectivity</li>
+                                <li>Mobile app for learning on-the-go</li>
+                                <li>Multi-language support</li>
+                                <li>Accessibility features for diverse needs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Table -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Compare Benefits</h2>
+            <p class="section-subtitle">See how Learn-Link benefits different educational stakeholders</p>
+
+            <div class="benefits-table-container">
+                <table class="benefits-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Students</th>
+                            <th>Teachers</th>
+                            <th>Administrators</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Assignment Tracking</td>
+                            <td><i class="fas fa-check-circle"></i> Never miss deadlines</td>
+                            <td><i class="fas fa-check-circle"></i> Easy assignment management</td>
+                            <td><i class="fas fa-check-circle"></i> Monitor completion rates</td>
+                        </tr>
+                        <tr>
+                            <td>Communication Tools</td>
+                            <td><i class="fas fa-check-circle"></i> Connect with peers & teachers</td>
+                            <td><i class="fas fa-check-circle"></i> Streamline announcements</td>
+                            <td><i class="fas fa-check-circle"></i> Institutional communication</td>
+                        </tr>
+                        <tr>
+                            <td>Progress Analytics</td>
+                            <td><i class="fas fa-check-circle"></i> Track personal growth</td>
+                            <td><i class="fas fa-check-circle"></i> Identify at-risk students</td>
+                            <td><i class="fas fa-check-circle"></i> Data-driven decisions</td>
+                        </tr>
+                        <tr>
+                            <td>Remote Access</td>
+                            <td><i class="fas fa-check-circle"></i> Learn anywhere, anytime</td>
+                            <td><i class="fas fa-check-circle"></i> Flexible teaching</td>
+                            <td><i class="fas fa-check-circle"></i> Expand reach</td>
+                        </tr>
+                        <tr>
+                            <td>Feedback System</td>
+                            <td><i class="fas fa-check-circle"></i> Timely improvement</td>
+                            <td><i class="fas fa-check-circle"></i> Efficient grading</td>
+                            <td><i class="fas fa-check-circle"></i> Quality assurance</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <p class="section-subtitle">Hear from students, teachers, and administrators using Learn-Link</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Learn-Link helped me organize my assignments and never miss a deadline. My grades improved
+                            by 30%!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="Sarah Johnson">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>University Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The communication tools have transformed how I interact with my students. Feedback is now
+                            immediate and
+                            effective."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="Prof. Michael Chen">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Prof. Michael Chen</h4>
+                            <p>College Instructor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"As an administrator, the analytics dashboard gives me insights I never had before. We've
+                            improved
+                            retention by 15%."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                alt="David Rodriguez">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>David Rodriguez</h4>
+                            <p>Academic Dean</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience Learn-Link?</h2>
+            <p>Join thousands of educational institutions transforming their learning experience</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn-primary">Start Free Trial</a>
+                <a href="contact.html" class="btn-secondary">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Learn-<strong>Link</strong></span>
+                    </a>
+                    <p>Bridging the gap between learning and engagement through innovative educational solutions.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Assignment Tracking</a></li>
+                        <li><a href="services.html">Communication Tools</a></li>
+                        <li><a href="services.html">Progress Analytics</a></li>
+                        <li><a href="services.html">Remote Learning</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@learnlink.edu</li>
+                        <li><i class="fas fa-phone"></i> +(237) 670 569 977</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Education Hub, Digital Campus</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Learn-Link. All rights reserved. | Designed as Educational Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/services.js"></script>
+    <script>
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('current_user'));
+    const authNavItem = document.getElementById('authNavItem');
+    
+    if (authNavItem && currentUser) {
+        authNavItem.innerHTML = `
+            <a href="dashboard.html" class="btn-nav active">
+                <i class="fas fa-user-circle"></i> Dashboard
+            </a>
+        `;
+    }
+</script>
 </body>
+
 </html>

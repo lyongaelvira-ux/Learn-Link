@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Learn-Link</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Dashboard Specific Styles */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+        
+        .user-profile {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #8b5cf6);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            border: 4px solid white;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .student { background: #dbeafe; color: #1e40af; }
+        .teacher { background: #f0f9ff; color: #0c4a6e; }
+        .admin { background: #fef3c7; color: #92400e; }
+        
+        .sidebar-nav {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #475569;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: #2563eb;
+        }
+        
+        .sidebar-nav i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 25px 0;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .dashboard-header h1 {
+            font-size: 2.2rem;
+            color: #1e293b;
+            margin: 0;
+        }
+        
+        .logout-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .stat-card:nth-child(1) .stat-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .stat-card:nth-child(2) .stat-icon { background: linear-gradient(135deg, #10b981, #059669); }
+        .stat-card:nth-child(3) .stat-icon { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .stat-card:nth-child(4) .stat-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 1rem;
+        }
+        
+        /* Data Table */
+        .data-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin: 0;
+        }
+        
+        .refresh-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .data-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        /* Demo Controls */
+        .demo-controls {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .demo-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .demo-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:nth-child(1) { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .demo-btn:nth-child(2) { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; }
+        .demo-btn:nth-child(3) { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-bottom: 30px;
+            }
+            
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .sidebar-nav a {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-buttons {
+                flex-direction: column;
+            }
+            
+            .demo-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (Same as other pages) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learn-<strong>Link</strong></span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html" class="btn-nav active">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="avatar" id="userAvatar">
+                    <!-- Avatar will be set by JavaScript -->
+                </div>
+                <h3 id="userName">Loading...</h3>
+                <p id="userEmail">Loading...</p>
+                <span class="role-badge" id="userRoleBadge">Loading...</span>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> My Courses</a></li>
+                <li><a href="#"><i class="fas fa-tasks"></i> Assignments</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Progress</a></li>
+                <li><a href="#"><i class="fas fa-comments"></i> Messages</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Welcome to Your Dashboard</h1>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-value" id="totalUsers">0</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="stat-value" id="studentCount">0</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="stat-value" id="teacherCount">0</div>
+                    <div class="stat-label">Teachers</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="stat-value" id="adminCount">0</div>
+                    <div class="stat-label">Administrators</div>
+                </div>
+            </div>
+            
+            <!-- Users Table Section -->
+            <div class="data-section">
+                <div class="section-header">
+                    <h2>👥 System Users</h2>
+                    <button class="refresh-btn" onclick="loadUsers()">
+                        <i class="fas fa-redo"></i> Refresh Users
+                    </button>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTable">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px;">
+                                <div class="loading-spinner">
+                                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                                    <p>Loading users...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Demo Controls -->
+            <div class="demo-controls">
+                <h2>🎓 Demo Controls</h2>
+                <p>These controls are for demonstration purposes only:</p>
+                
+                <div class="demo-buttons">
+                    <button class="demo-btn" onclick="showStats()">
+                        <i class="fas fa-chart-bar"></i> Show Statistics
+                    </button>
+                    <button class="demo-btn" onclick="addDemoUser()">
+                        <i class="fas fa-user-plus"></i> Add Demo User
+                    </button>
+                    <button class="demo-btn" onclick="clearData()">
+                        <i class="fas fa-trash-alt"></i> Clear All Data
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Learn-<strong>Link</strong></span>
+                    </a>
+                    <p>Bridging the gap between learning and engagement through innovative educational solutions.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Assignment Tracking</a></li>
+                        <li><a href="services.html">Communication Tools</a></li>
+                        <li><a href="services.html">Progress Analytics</a></li>
+                        <li><a href="services.html">Remote Learning</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@learnlink.edu</li>
+                        <li><i class="fas fa-phone"></i> +(237) 670 569 977</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Education Hub, Digital Campus</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Learn-Link. All rights reserved. | Designed as Educational Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Demo Actions -->
+    <div class="modal" id="demoModal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Demo Action</h2>
+            <p id="modalMessage">This is a demo message.</p>
+            <button class="btn-primary" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Dashboard JavaScript
+        
+        // Check authentication
+        function checkAuth() {
+            const user = SimpleAuth.getCurrentUser();
+            if (!user) {
+                window.location.href = 'login.html';
+                return null;
+            }
+            return user;
+        }
+        
+        // Initialize dashboard
+        function initDashboard() {
+            const user = checkAuth();
+            if (!user) return;
+            
+            // Set user info
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userRoleBadge').textContent = user.role;
+            document.getElementById('userRoleBadge').className = `role-badge ${user.role}`;
+            
+            // Set avatar initial
+            const avatarDiv = document.getElementById('userAvatar');
+            const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            avatarDiv.innerHTML = initials;
+            
+            // Load users and stats
+            loadUsers();
+            updateStats();
+        }
+        
+        // Load users table
+        function loadUsers() {
+            const users = SimpleAuth.getAllUsers();
+            const tableBody = document.getElementById('usersTable');
+            
+            tableBody.innerHTML = users.map(user => `
+                <tr>
+                    <td>${user.id}</td>
+                    <td><strong>${user.name}</strong></td>
+                    <td>${user.email}</td>
+                    <td><span class="role-badge ${user.role}">${user.role}</span></td>
+                    <td>${new Date(user.created_at).toLocaleDateString()}</td>
+                    <td>
+                        <button onclick="viewUser(${user.id})" style="padding: 6px 12px; background: #e0f2fe; border: none; border-radius: 4px; margin-right: 5px;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button onclick="deleteUser(${user.id})" style="padding: 6px 12px; background: #fee2e2; border: none; border-radius: 4px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            
+            updateStats();
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const users = SimpleAuth.getAllUsers();
+            const currentUser = SimpleAuth.getCurrentUser();
+            
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('studentCount').textContent = users.filter(u => u.role === 'student').length;
+            document.getElementById('teacherCount').textContent = users.filter(u => u.role === 'teacher').length;
+            document.getElementById('adminCount').textContent = users.filter(u => u.role === 'admin').length;
+            
+            // Only allow demo features for admin
+            const demoControls = document.querySelector('.demo-controls');
+            if (currentUser.role !== 'admin') {
+                demoControls.style.display = 'none';
+            }
+        }
+        
+        // Add demo user
+        function addDemoUser() {
+            const demoNum = Math.floor(Math.random() * 1000);
+            const roles = ['student', 'teacher', 'admin'];
+            const role = roles[Math.floor(Math.random() * roles.length)];
+            
+            const result = SimpleAuth.register(
+                `demo${demoNum}@learnlink.com`,
+                'demo123',
+                `Demo User ${demoNum}`,
+                role
+            );
+            
+            if (result.success) {
+                showModal('✅ Success', `Added demo user: ${result.user.name} (${role})`);
+                loadUsers();
+            } else {
+                showModal('❌ Error', result.message);
+            }
+        }
+        
+        // View user details
+        function viewUser(userId) {
+            const user = SimpleAuth.getUserById(userId);
+            if (user) {
+                showModal('👤 User Details', `
+                    <p><strong>Name:</strong> ${user.name}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Role:</strong> ${user.role}</p>
+                    <p><strong>Joined:</strong> ${new Date(user.created_at).toLocaleString()}</p>
+                    <p><strong>ID:</strong> ${user.id}</p>
+                `);
+            }
+        }
+        
+        // Delete user
+        function deleteUser(userId) {
+            const currentUser = SimpleAuth.getCurrentUser();
+            if (userId === currentUser.id) {
+                showModal('❌ Error', 'You cannot delete your own account!');
+                return;
+            }
+            
+            if (confirm(`Are you sure you want to delete user ID ${userId}?`)) {
+                const success = SimpleAuth.deleteUser(userId);
+                if (success) {
+                    showModal('✅ Success', 'User deleted successfully!');
+                    loadUsers();
+                } else {
+                    showModal('❌ Error', 'Failed to delete user.');
+                }
+            }
+        }
+        
+        // Show statistics
+        function showStats() {
+            const users = SimpleAuth.getAllUsers();
+            const stats = users.reduce((acc, user) => {
+                acc[user.role] = (acc[user.role] || 0) + 1;
+                return acc;
+            }, {});
+            
+            const totalUsers = users.length;
+            const today = new Date().toLocaleDateString();
+            
+            showModal('📊 System Statistics', `
+                <p><strong>Total Users:</strong> ${totalUsers}</p>
+                <p><strong>Students:</strong> ${stats.student || 0}</p>
+                <p><strong>Teachers:</strong> ${stats.teacher || 0}</p>
+                <p><strong>Admins:</strong> ${stats.admin || 0}</p>
+                <hr>
+                <p><strong>Last Updated:</strong> ${today}</p>
+                <p><strong>Demo System:</strong> This is a frontend-only demo</p>
+            `);
+        }
+        
+        // Clear all data
+        function clearData() {
+            if (confirm('⚠️ WARNING: This will delete ALL user data and log you out!\n\nThis action cannot be undone. Are you sure?')) {
+                localStorage.removeItem('learnlink_users');
+                localStorage.removeItem('current_user');
+                SimpleAuth.init();
+                showModal('✅ Success', 'All data has been cleared. You will be redirected to the login page.');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            }
+        }
+        
+        // Modal functions
+        function showModal(title, message) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').innerHTML = message;
+            document.getElementById('demoModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('demoModal').style.display = 'none';
+        }
+        
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('current_user');
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initDashboard);
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('demoModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
